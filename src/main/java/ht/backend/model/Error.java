@@ -50,8 +50,7 @@ public class Error {
     public Error() {
     }
 
-    public Error(Long id, String code, Timestamp timestamp, boolean isTitleEnabled, String message, String title,
-                 String htmlLabel, String label, boolean retryable, ErrorSeverity severity) {
+    public Error(Long id, String code, Timestamp timestamp, boolean isTitleEnabled, String message, String title, String htmlLabel, String label, boolean retryable, ErrorSeverity severity, String details) {
         this.id = id;
         this.code = code;
         this.timestamp = timestamp;
@@ -62,6 +61,7 @@ public class Error {
         this.label = label;
         this.retryable = retryable;
         this.severity = severity;
+        this.details = details;
     }
 
     // Getters and setters

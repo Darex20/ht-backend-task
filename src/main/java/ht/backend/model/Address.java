@@ -1,10 +1,12 @@
 package ht.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "address")
@@ -72,11 +74,13 @@ public class Address {
     @JoinColumn(name = "address_geo_code_id", referencedColumnName = "geo_code_id")
     private GeoCode geoCode;
 
-    @OneToMany(mappedBy = "address")
-    private ArrayList<Characteristic> characteristics;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    private Set<Characteristic> characteristics = new HashSet<Characteristic>();
 
-    @OneToMany(mappedBy = "address")
-    private ArrayList<SubAddress> subAddresses;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    private Set<SubAddress> subAddresses = new HashSet<SubAddress>();
 
     @OneToOne
     @JoinColumn(name = "address_audit_id", referencedColumnName = "audit_id")
@@ -89,10 +93,9 @@ public class Address {
     public Address() {
     }
 
-    public Address(String href, AddressRoleReference addressRole, TimePeriod validFor, String streetNr, String streetNrSuffix, String streetNrLast, String streetNrLastSuffix, String streetName, String streetType, String streetSuffix, String postcode, String locality, String city, String stateOrProvidence, String country, GeoCode geoCode, String fullAddressName, ArrayList<Characteristic> characteristics, ArrayList<SubAddress> subAddresses, String note, Audit audit, VersionReference addressSpecRef) {
+    public Address(Long id, String href, String streetNr, String streetNrSuffix, String streetNrLast, String streetNrLastSuffix, String streetName, String streetType, String streetSuffix, String postcode, String locality, String city, String stateOrProvidence, String country, String fullAddressName, String note, AddressRoleReference addressRole, TimePeriod validFor, GeoCode geoCode, Set<Characteristic> characteristics, Set<SubAddress> subAddresses, Audit audit, VersionReference addressSpecRef) {
+        this.id = id;
         this.href = href;
-        this.addressRole = addressRole;
-        this.validFor = validFor;
         this.streetNr = streetNr;
         this.streetNrSuffix = streetNrSuffix;
         this.streetNrLast = streetNrLast;
@@ -105,12 +108,198 @@ public class Address {
         this.city = city;
         this.stateOrProvidence = stateOrProvidence;
         this.country = country;
-        this.geoCode = geoCode;
         this.fullAddressName = fullAddressName;
+        this.note = note;
+        this.addressRole = addressRole;
+        this.validFor = validFor;
+        this.geoCode = geoCode;
         this.characteristics = characteristics;
         this.subAddresses = subAddresses;
-        this.note = note;
         this.audit = audit;
+        this.addressSpecRef = addressSpecRef;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    public String getStreetNr() {
+        return streetNr;
+    }
+
+    public void setStreetNr(String streetNr) {
+        this.streetNr = streetNr;
+    }
+
+    public String getStreetNrSuffix() {
+        return streetNrSuffix;
+    }
+
+    public void setStreetNrSuffix(String streetNrSuffix) {
+        this.streetNrSuffix = streetNrSuffix;
+    }
+
+    public String getStreetNrLast() {
+        return streetNrLast;
+    }
+
+    public void setStreetNrLast(String streetNrLast) {
+        this.streetNrLast = streetNrLast;
+    }
+
+    public String getStreetNrLastSuffix() {
+        return streetNrLastSuffix;
+    }
+
+    public void setStreetNrLastSuffix(String streetNrLastSuffix) {
+        this.streetNrLastSuffix = streetNrLastSuffix;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getStreetType() {
+        return streetType;
+    }
+
+    public void setStreetType(String streetType) {
+        this.streetType = streetType;
+    }
+
+    public String getStreetSuffix() {
+        return streetSuffix;
+    }
+
+    public void setStreetSuffix(String streetSuffix) {
+        this.streetSuffix = streetSuffix;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStateOrProvidence() {
+        return stateOrProvidence;
+    }
+
+    public void setStateOrProvidence(String stateOrProvidence) {
+        this.stateOrProvidence = stateOrProvidence;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getFullAddressName() {
+        return fullAddressName;
+    }
+
+    public void setFullAddressName(String fullAddressName) {
+        this.fullAddressName = fullAddressName;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public AddressRoleReference getAddressRole() {
+        return addressRole;
+    }
+
+    public void setAddressRole(AddressRoleReference addressRole) {
+        this.addressRole = addressRole;
+    }
+
+    public TimePeriod getValidFor() {
+        return validFor;
+    }
+
+    public void setValidFor(TimePeriod validFor) {
+        this.validFor = validFor;
+    }
+
+    public GeoCode getGeoCode() {
+        return geoCode;
+    }
+
+    public void setGeoCode(GeoCode geoCode) {
+        this.geoCode = geoCode;
+    }
+
+    public Set<Characteristic> getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(Set<Characteristic> characteristics) {
+        this.characteristics = characteristics;
+    }
+
+    public Set<SubAddress> getSubAddresses() {
+        return subAddresses;
+    }
+
+    public void setSubAddresses(Set<SubAddress> subAddresses) {
+        this.subAddresses = subAddresses;
+    }
+
+    public Audit getAudit() {
+        return audit;
+    }
+
+    public void setAudit(Audit audit) {
+        this.audit = audit;
+    }
+
+    public VersionReference getAddressSpecRef() {
+        return addressSpecRef;
+    }
+
+    public void setAddressSpecRef(VersionReference addressSpecRef) {
         this.addressSpecRef = addressSpecRef;
     }
 }
