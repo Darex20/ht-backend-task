@@ -1,5 +1,6 @@
 package ht.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 // Related customer on shipment tracking
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 public class CustomerRefType {
 
     // Customer ID
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_ref_type_id")

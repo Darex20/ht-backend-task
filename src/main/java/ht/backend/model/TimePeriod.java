@@ -1,5 +1,6 @@
 package ht.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -8,6 +9,7 @@ import java.sql.Timestamp;
 @Table(name = "time_period")
 public class TimePeriod {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "time_period_id")

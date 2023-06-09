@@ -1,5 +1,6 @@
 package ht.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 // Used to provide information on geographic code. Deprecated and shouldn't be used. Use "location" instead.
@@ -7,6 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "geo_code")
 public class GeoCode {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "geo_code_id")

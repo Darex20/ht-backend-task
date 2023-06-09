@@ -11,6 +11,7 @@ import java.util.List;
 @Table(name = "characteristic")
 public class Characteristic {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "characteristic_id")
