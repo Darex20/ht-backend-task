@@ -1,5 +1,6 @@
 package ht.backend.model;
 
+import ht.backend.enums.ShipmentStatus;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -31,7 +32,7 @@ public class ShipmentTracking {
     private Timestamp trackingDate;
 
     @Column(name = "status")
-    private String status;
+    private ShipmentStatus status;
 
     @Column(name = "status_change_date")
     private Timestamp statusChangeDate;
@@ -74,7 +75,7 @@ public class ShipmentTracking {
     public ShipmentTracking() {
     }
 
-    public ShipmentTracking(Long id, String href, String carrier, String trackingCode, String carrierTrackingUrl, Timestamp trackingDate, String status, Timestamp statusChangeDate, String statusChangeReason, Double weight, Timestamp estimatedDeliveryDate, Timestamp createDate, Address addressFrom, Address addressTo, Set<CheckpointType> checkpoints, Set<OrderRefType> orders, CustomerRefType relatedCustomer, Set<Characteristic> characteristics) {
+    public ShipmentTracking(Long id, String href, String carrier, String trackingCode, String carrierTrackingUrl, Timestamp trackingDate, ShipmentStatus status, Timestamp statusChangeDate, String statusChangeReason, Double weight, Timestamp estimatedDeliveryDate, Timestamp createDate, Address addressFrom, Address addressTo, Set<CheckpointType> checkpoints, Set<OrderRefType> orders, CustomerRefType relatedCustomer, Set<Characteristic> characteristics) {
         this.id = id;
         this.href = href;
         this.carrier = carrier;
@@ -143,11 +144,11 @@ public class ShipmentTracking {
         this.trackingDate = trackingDate;
     }
 
-    public String getStatus() {
+    public ShipmentStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ShipmentStatus status) {
         this.status = status;
     }
 

@@ -70,8 +70,8 @@ VALUES
 
 INSERT INTO public.shipment_tracking (weight, create_date, estimated_delivery_date, shipment_tracking_address_from_id, shipment_tracking_address_to_id, shipment_tracking_related_customer_id, status_change_date, tracking_date, carrier, carrier_tracking_url, href, status, status_change_reason, tracking_code)
 VALUES
-    (10.5, '2023-06-01 10:00:00', '2023-06-05 12:00:00', 1, 2, 1, '2023-06-02 10:00:00', '2023-06-03 12:00:00', 'Carrier 1', 'Tracking URL 1', 'Href 1', 'Status 1', 'Change Reason 1', 'Tracking Code 1'),
-    (15.2, '2023-06-02 11:00:00', '2023-06-06 13:00:00', 2, 1, 2, '2023-06-03 11:00:00', '2023-06-04 13:00:00', 'Carrier 2', 'Tracking URL 2', 'Href 2', 'Status 2', 'Change Reason 2', 'Tracking Code 2');
+    (10.5, '2023-06-01 10:00:00', '2023-06-05 12:00:00', 1, 2, 1, '2023-06-02 10:00:00', '2023-06-03 12:00:00', 'Carrier 1', 'Tracking URL 1', 'Href 1', 5, 'Change Reason 1', 'Tracking Code 1'),
+    (15.2, '2023-06-02 11:00:00', '2023-06-06 13:00:00', 2, 1, 2, '2023-06-03 11:00:00', '2023-06-04 13:00:00', 'Carrier 2', 'Tracking URL 2', 'Href 2', 4, 'Change Reason 2', 'Tracking Code 2');
 
 INSERT INTO public.checkpoint_type ("date", shipment_tracking_id, check_post, city, country, "message", state_or_province, status)
 VALUES

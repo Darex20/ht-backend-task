@@ -3,6 +3,7 @@ package ht.backend.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
+import ht.backend.enums.ShipmentStatus;
 import ht.backend.model.ShipmentTracking;
 import ht.backend.services.ShipmentTrackingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,12 +29,41 @@ public class ShipmentTrackingController {
 
     @GetMapping
     public List<ShipmentTracking> getShipmentTracking() {
-        return shipmentTrackingService.getShipmentTracking();
+        return shipmentTrackingService.getAllShipmentTracking();
     }
 
     @GetMapping("/{id}")
     public ShipmentTracking getShipmentTrackingById(@PathVariable Long id){
         return shipmentTrackingService.getShipmentTrackingById(id);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<ShipmentTracking> getShipmentTrackingByStatus(@PathVariable ShipmentStatus status){
+        return shipmentTrackingService.getAllShipmentTrackingByStatus(status);
+    }
+
+    @GetMapping("/date")
+    public List<ShipmentTracking> getShipmentTrackingDate(@RequestParam(required = false) String start,
+                                                          @RequestParam(required = false) String end) throws Exception{
+        Timestamp dateA = Timestamp.valueOf(start);
+        Timestamp dateB = Timestamp.valueOf(end);
+        if (dateA != null && dateB != null) {
+            if (dateA.after(dateB)){
+                throw new Exception("First date should be before second one.");
+            }
+            return shipmentTrackingService.getAllShipmentTrackingBetweenCreationDates(dateA, dateB);
+        } else if (dateA != null) {
+            List<ShipmentTracking> list = new ArrayList<ShipmentTracking>();
+            list.add(shipmentTrackingService.getShipmentTrackingByCreateDate(dateA));
+            return list;
+        } else if (dateB != null){
+            List<ShipmentTracking> list = new ArrayList<ShipmentTracking>();
+            list.add(shipmentTrackingService.getShipmentTrackingByCreateDate(dateB));
+            return list;
+        } else {
+            return shipmentTrackingService.getAllShipmentTracking();
+        }
+
     }
 
     @PostMapping

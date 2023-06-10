@@ -5,12 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
+import ht.backend.enums.ShipmentStatus;
 import ht.backend.model.ShipmentTracking;
 import ht.backend.repositories.ShipmentTrackingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -26,7 +28,7 @@ public class ShipmentTrackingService {
         this.objectMapper = objectMapper;
     }
 
-    public List<ShipmentTracking> getShipmentTracking() {
+    public List<ShipmentTracking> getAllShipmentTracking() {
         return shipmentTrackingRepository.findAll();
     }
 
@@ -46,5 +48,20 @@ public class ShipmentTrackingService {
 
     public void updateShipmentTracking(ShipmentTracking shipmentTracking) {
         shipmentTrackingRepository.save(shipmentTracking);
+    }
+
+    public List<ShipmentTracking> getAllShipmentTrackingByStatus(ShipmentStatus shipmentStatus) {
+        return shipmentTrackingRepository.findAllByStatus(shipmentStatus)
+                .orElseThrow(() -> new EntityNotFoundException("Shipment Tracking with that id was not found."));
+    }
+
+    public List<ShipmentTracking> getAllShipmentTrackingBetweenCreationDates(Timestamp date1, Timestamp date2){
+        return shipmentTrackingRepository.findAllBetweenCreationDates(date1, date2)
+                .orElseThrow(() -> new EntityNotFoundException("There are no shipments tracked between those dates."));
+    }
+
+    public ShipmentTracking getShipmentTrackingByCreateDate(Timestamp date){
+        return shipmentTrackingRepository.findShipmentTrackingByCreateDate(date)
+                .orElseThrow(() -> new EntityNotFoundException("There are no shipments with selected date."));
     }
 }
