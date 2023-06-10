@@ -1,0 +1,188 @@
+{
+  "href" : "Href 1",
+  "carrier" : "Carrier 1",
+  "trackingCode" : "Tracking Code 1",
+  "carrierTrackingUrl" : "Tracking URL 1",
+  "trackingDate" : "2023-06-03T10:00:00.000+00:00",
+  "status" : "Status 1",
+  "statusChangeDate" : "2023-06-02T08:00:00.000+00:00",
+  "statusChangeReason" : "Change Reason 1",
+  "weight" : 10.5,
+  "estimatedDeliveryDate" : "2023-06-05T10:00:00.000+00:00",
+  "createDate" : "2023-06-01T08:00:00.000+00:00",
+  "addressFrom" : {
+    "href" : "Href 1",
+    "streetNr" : "10",
+    "streetNrSuffix" : "B",
+    "streetNrLast" : "20",
+    "streetNrLastSuffix" : "A",
+    "streetName" : "Street Name 1",
+    "streetType" : "Type 1",
+    "streetSuffix" : "Suffix 1",
+    "postcode" : "12345",
+    "locality" : "Locality 1",
+    "city" : "City 1",
+    "stateOrProvidence" : "State 1",
+    "country" : "Country 1",
+    "fullAddressName" : "Full Address 1",
+    "note" : "Note 1",
+    "addressRole" : {
+      "href" : "Href 1",
+      "role" : "CONTACT",
+      "name" : "Role 1",
+      "validFor" : {
+        "startDateTime" : "2023-06-02T08:00:00.000+00:00",
+        "endDateTime" : "2023-06-01T08:00:00.000+00:00"
+      }
+    },
+    "validFor" : {
+      "startDateTime" : "2023-06-02T08:00:00.000+00:00",
+      "endDateTime" : "2023-06-01T08:00:00.000+00:00"
+    },
+    "geoCode" : {
+      "latitude" : "Latitude 1",
+      "longitude" : "Longitude 1",
+      "geographicDatum" : "Geographic Datum 1"
+    },
+    "characteristics" : [ {
+      "name" : "Characteristic Name 1",
+      "value" : "Characteristic Value 1"
+    } ],
+    "subAddresses" : [ {
+      "href" : "Href 1",
+      "type" : "Type 1",
+      "name" : "Name 1",
+      "subUnitType" : "Sub Unit Type 1",
+      "subUnitNumber" : "Sub Unit Number 1",
+      "levelType" : "Level Type 1",
+      "levelNumber" : "Level Number 1",
+      "buildingName" : "Building Name 1",
+      "privateStreetNumber" : "Private Street Number 1",
+      "privateStreetName" : "Private Street Name 1",
+      "characteristics" : [ {
+        "name" : "Characteristic Name 1",
+        "value" : "Characteristic Value 1"
+      } ]
+    } ],
+    "audit" : {
+      "createdBy" : "User 1",
+      "createdDate" : "2023-06-01T08:00:00.000+00:00",
+      "entityVersion" : "Version 1",
+      "tagId" : "Tag 1",
+      "spanId" : "Span 1",
+      "changeReason" : "Change Reason 1",
+      "sourceSystem" : "System 1",
+      "sourceSystemUser" : "System User 1",
+      "characteristics" : [ {
+        "name" : "Characteristic Name 1",
+        "value" : "Characteristic Value 1"
+      } ]
+    },
+    "addressSpecRef" : {
+      "href" : "Href 1",
+      "name" : "Name 1",
+      "version" : "Version 1"
+    }
+  },
+  "addressTo" : {
+    "href" : "Href 2",
+    "streetNr" : "30",
+    "streetNrSuffix" : "D",
+    "streetNrLast" : "40",
+    "streetNrLastSuffix" : "C",
+    "streetName" : "Street Name 2",
+    "streetType" : "Type 2",
+    "streetSuffix" : "Suffix 2",
+    "postcode" : "67890",
+    "locality" : "Locality 2",
+    "city" : "City 2",
+    "stateOrProvidence" : "State 2",
+    "country" : "Country 2",
+    "fullAddressName" : "Full Address 2",
+    "note" : "Note 2",
+    "addressRole" : {
+      "href" : "Href 2",
+      "role" : "BILL_DELIVERY",
+      "name" : "Role 2",
+      "validFor" : {
+        "startDateTime" : "2023-06-03T09:00:00.000+00:00",
+        "endDateTime" : "2023-06-02T09:00:00.000+00:00"
+      }
+    },
+    "validFor" : {
+      "startDateTime" : "2023-06-03T09:00:00.000+00:00",
+      "endDateTime" : "2023-06-02T09:00:00.000+00:00"
+    },
+    "geoCode" : {
+      "latitude" : "Latitude 2",
+      "longitude" : "Longitude 2",
+      "geographicDatum" : "Geographic Datum 2"
+    },
+    "characteristics" : [ {
+      "name" : "Characteristic Name 2",
+      "value" : "Characteristic Value 2"
+    } ],
+    "subAddresses" : [ {
+      "href" : "Href 2",
+      "type" : "Type 2",
+      "name" : "Name 2",
+      "subUnitType" : "Sub Unit Type 2",
+      "subUnitNumber" : "Sub Unit Number 2",
+      "levelType" : "Level Type 2",
+      "levelNumber" : "Level Number 2",
+      "buildingName" : "Building Name 2",
+      "privateStreetNumber" : "Private Street Number 2",
+      "privateStreetName" : "Private Street Name 2",
+      "characteristics" : [ {
+        "name" : "Characteristic Name 2",
+        "value" : "Characteristic Value 2"
+      } ]
+    } ],
+    "audit" : {
+      "createdBy" : "User 2",
+      "createdDate" : "2023-06-02T09:00:00.000+00:00",
+      "entityVersion" : "Version 2",
+      "tagId" : "Tag 2",
+      "spanId" : "Span 2",
+      "changeReason" : "Change Reason 2",
+      "sourceSystem" : "System 2",
+      "sourceSystemUser" : "System User 2",
+      "characteristics" : [ {
+        "name" : "Characteristic Name 2",
+        "value" : "Characteristic Value 2"
+      } ]
+    },
+    "addressSpecRef" : {
+      "href" : "Href 2",
+      "name" : "Name 2",
+      "version" : "Version 2"
+    }
+  },
+  "checkpoints" : [ {
+    "status" : "Status 1",
+    "message" : "Message 1",
+    "date" : "2023-06-01-08:00:00",
+    "checkPost" : "Check Post 1",
+    "city" : "City 1",
+    "stateOrProvince" : "State 1",
+    "country" : "Country 1",
+    "characteristics" : [ {
+      "name" : "Characteristic Name 1",
+      "value" : "Characteristic Value 1"
+    } ]
+  } ],
+  "orders" : [ {
+    "href" : "Href 1",
+    "name" : "Name 1",
+    "referredType" : "Referred Type 1"
+  } ],
+  "relatedCustomer" : {
+    "href" : "Href 1",
+    "name" : "Customer Ref Type 1",
+    "description" : "Description 1"
+  },
+  "characteristics" : [ {
+    "name" : "Characteristic Name 1",
+    "value" : "Characteristic Value 1"
+  } ]
+}
