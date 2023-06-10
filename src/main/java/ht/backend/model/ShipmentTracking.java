@@ -1,13 +1,9 @@
 package ht.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.aspectj.asm.internal.Relationship;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -54,27 +50,24 @@ public class ShipmentTracking {
 
     // Relationships
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "shipment_tracking_address_from_id", referencedColumnName = "address_id")
     private Address addressFrom;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "shipment_tracking_address_to_id", referencedColumnName = "address_id")
     private Address addressTo;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "shipmentTracking", fetch = FetchType.LAZY)
     private Set<CheckpointType> checkpoints = new HashSet<CheckpointType>();
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "shipmentTracking", fetch = FetchType.LAZY)
     private Set<OrderRefType> orders = new HashSet<OrderRefType>();
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "shipment_tracking_related_customer_id", referencedColumnName = "customer_ref_type_id")
     private CustomerRefType relatedCustomer;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "shipmentTracking", fetch = FetchType.LAZY)
     private Set<Characteristic> characteristics = new HashSet<Characteristic>();
 

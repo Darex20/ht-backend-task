@@ -4,7 +4,6 @@ import ht.backend.enums.ErrorSeverity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Table(name = "error")

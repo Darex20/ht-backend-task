@@ -26,7 +26,7 @@ public class Location {
     @Column
     private String spatialRef;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "location_point_id", referencedColumnName = "point_id")
     private Point geometry;
 

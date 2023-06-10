@@ -1,11 +1,7 @@
 package ht.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "characteristic")
@@ -23,27 +19,27 @@ public class Characteristic {
     @Column(name = "value")
     private String value;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sub_address_id", nullable = false)
     private SubAddress subAddress;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "address_id", nullable=false)
     private Address address;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "audit_id", nullable = false)
     private Audit audit;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "checkpoint_type_id", nullable = false)
     private CheckpointType checkpointType;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shipment_tracking_id", nullable = false)
     private ShipmentTracking shipmentTracking;

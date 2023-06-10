@@ -1,6 +1,6 @@
 package ht.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,7 +21,7 @@ public class OrderRefType {
     @Column(name = "reffered_type")
     private String referredType;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shipment_tracking_id", nullable = false)
     private ShipmentTracking shipmentTracking;

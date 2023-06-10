@@ -1,11 +1,8 @@
 package ht.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,31 +59,29 @@ public class Address {
     @Column
     private String note;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_role_id", referencedColumnName = "address_role_reference_id")
     private AddressRoleReference addressRole;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_valid_for_id", referencedColumnName = "time_period_id")
     private TimePeriod validFor;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_geo_code_id", referencedColumnName = "geo_code_id")
     private GeoCode geoCode;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
     private Set<Characteristic> characteristics = new HashSet<Characteristic>();
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
     private Set<SubAddress> subAddresses = new HashSet<SubAddress>();
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_audit_id", referencedColumnName = "audit_id")
     private Audit audit;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_spec_ref_id", referencedColumnName = "version_reference_id")
     private VersionReference addressSpecRef;
 

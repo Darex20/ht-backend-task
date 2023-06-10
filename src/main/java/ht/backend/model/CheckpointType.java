@@ -1,14 +1,11 @@
 package ht.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 // Checkpoint Type
@@ -44,11 +41,10 @@ public class CheckpointType {
     @Column
     private String country;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "checkpointType", fetch = FetchType.LAZY)
     private Set<Characteristic> characteristics = new HashSet<Characteristic>();
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shipment_tracking_id", nullable = false)
     private ShipmentTracking shipmentTracking;

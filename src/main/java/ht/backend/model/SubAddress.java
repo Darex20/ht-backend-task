@@ -1,11 +1,9 @@
 package ht.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,11 +47,10 @@ public class SubAddress {
 
     // Relationships
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "subAddress", fetch = FetchType.LAZY)
     private Set<Characteristic> characteristics = new HashSet<Characteristic>();
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="address_id", nullable=false)
     private Address address;

@@ -21,7 +21,7 @@ public class AddressRoleReference {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_role_time_period_id", referencedColumnName = "time_period_id")
     private TimePeriod validFor;
 

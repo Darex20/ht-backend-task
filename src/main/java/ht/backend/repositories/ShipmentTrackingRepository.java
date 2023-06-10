@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ShipmentTrackingRepository extends JpaRepository<ShipmentTracking, Long> {
 
     Optional<ShipmentTracking> findShipmentTrackingById(Long id);
+
 }
