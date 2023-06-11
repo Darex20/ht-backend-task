@@ -1,11 +1,11 @@
-package ht.backend.controllers;
+package ht.backend.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import ht.backend.enums.ShipmentStatus;
 import ht.backend.model.ShipmentTracking;
-import ht.backend.services.ShipmentTrackingService;
+import ht.backend.service.ShipmentTrackingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,18 +45,20 @@ public class ShipmentTrackingController {
     @GetMapping("/date")
     public List<ShipmentTracking> getShipmentTrackingDate(@RequestParam(required = false) String start,
                                                           @RequestParam(required = false) String end) throws Exception{
-        Timestamp dateA = Timestamp.valueOf(start);
-        Timestamp dateB = Timestamp.valueOf(end);
-        if (dateA != null && dateB != null) {
+        if (start != null && end != null) {
+            Timestamp dateA = Timestamp.valueOf(start);
+            Timestamp dateB = Timestamp.valueOf(end);
             if (dateA.after(dateB)){
                 throw new Exception("First date should be before second one.");
             }
             return shipmentTrackingService.getAllShipmentTrackingBetweenCreationDates(dateA, dateB);
-        } else if (dateA != null) {
+        } else if (start != null) {
+            Timestamp dateA = Timestamp.valueOf(start);
             List<ShipmentTracking> list = new ArrayList<ShipmentTracking>();
             list.add(shipmentTrackingService.getShipmentTrackingByCreateDate(dateA));
             return list;
-        } else if (dateB != null){
+        } else if (end != null){
+            Timestamp dateB = Timestamp.valueOf(end);
             List<ShipmentTracking> list = new ArrayList<ShipmentTracking>();
             list.add(shipmentTrackingService.getShipmentTrackingByCreateDate(dateB));
             return list;

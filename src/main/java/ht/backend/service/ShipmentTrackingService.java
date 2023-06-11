@@ -1,4 +1,4 @@
-package ht.backend.services;
+package ht.backend.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -7,7 +7,7 @@ import com.github.fge.jsonpatch.JsonPatchException;
 import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import ht.backend.enums.ShipmentStatus;
 import ht.backend.model.ShipmentTracking;
-import ht.backend.repositories.ShipmentTrackingRepository;
+import ht.backend.repository.ShipmentTrackingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

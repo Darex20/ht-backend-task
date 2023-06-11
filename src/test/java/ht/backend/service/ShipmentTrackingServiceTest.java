@@ -1,4 +1,4 @@
-package ht.backend.services;
+package ht.backend.service;
 
 public class ShipmentTrackingServiceTest {
 }

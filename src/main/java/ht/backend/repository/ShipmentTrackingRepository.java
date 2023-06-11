@@ -1,4 +1,4 @@
-package ht.backend.repositories;
+package ht.backend.repository;
 
 import ht.backend.enums.ShipmentStatus;
 import ht.backend.model.ShipmentTracking;
