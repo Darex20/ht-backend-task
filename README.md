@@ -5,9 +5,8 @@ All defined models and requested CRUD mappings are implemented as given.
 
 ### Test
 
-On every run the database is initialized and filled up with mock data.
-In `test/resources` there are examples of possible Patch and Post request that can be run as well as an url example that will filter all Shipment Trackings between certain dates.
-Furthermore there are tests for both Shipment Tracking Controller and Service implemented in the `test` directory.
+On every run the database is initialized and filled up with mock data (defined in `src/main/resources/data.sql`).
+In `test/resources` there are examples of possible Patch and Post request that can be run as well as an url example that will filter all Shipment Trackings between certain dates. Furthermore there are tests for both Shipment Tracking Controller and Service implemented in the `test` directory.
 
 ### Usage
 
