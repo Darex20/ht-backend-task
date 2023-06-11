@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class ShipmentTrackingService {
@@ -37,8 +39,8 @@ public class ShipmentTrackingService {
     }
 
     public ShipmentTracking getShipmentTrackingById(Long id) {
-        return shipmentTrackingRepository.findShipmentTrackingById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Shipment Tracking with that id was not found."));
+        Optional<ShipmentTracking> shipmentTracking = shipmentTrackingRepository.findById(id);
+        return shipmentTracking.orElseThrow(() -> new EntityNotFoundException("ShipmentTracking with id " + id + " not found"));
     }
 
     public ShipmentTracking applyPatchToShipmentTracking(JsonMergePatch patch, ShipmentTracking shipmentTracking) throws JsonPatchException, JsonProcessingException {
@@ -50,14 +52,20 @@ public class ShipmentTrackingService {
         shipmentTrackingRepository.save(shipmentTracking);
     }
 
-    public List<ShipmentTracking> getAllShipmentTrackingByStatus(ShipmentStatus shipmentStatus) {
-        return shipmentTrackingRepository.findAllByStatus(shipmentStatus)
-                .orElseThrow(() -> new EntityNotFoundException("Shipment Tracking with that id was not found."));
+    public List<ShipmentTracking> getAllShipmentTrackingByStatus(ShipmentStatus shipmentStatus) throws EntityNotFoundException {
+        try{
+            List<ShipmentTracking> list = shipmentTrackingRepository.findAllByStatus(shipmentStatus).get();
+            if (list.isEmpty()) throw new EntityNotFoundException("There are no shipments with status: " + shipmentStatus);
+            else return list;
+        } catch (NoSuchElementException e){
+            throw new EntityNotFoundException("There are no shipments with status: " + shipmentStatus);
+        }
     }
 
     public List<ShipmentTracking> getAllShipmentTrackingBetweenCreationDates(Timestamp date1, Timestamp date2){
-        return shipmentTrackingRepository.findAllBetweenCreationDates(date1, date2)
-                .orElseThrow(() -> new EntityNotFoundException("There are no shipments tracked between those dates."));
+        List<ShipmentTracking> list = shipmentTrackingRepository.findAllBetweenCreationDates(date1, date2).get();
+        if (list.isEmpty()) throw new EntityNotFoundException("There are no shipments tracked between those dates.");
+        else return list;
     }
 
     public ShipmentTracking getShipmentTrackingByCreateDate(Timestamp date){

@@ -1,55 +1,54 @@
 package ht.backend.model;
 
 import ht.backend.enums.ErrorSeverity;
-import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "error")
-public class Error {
+import static java.lang.System.currentTimeMillis;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "error_id")
+public class CustomError {
+
     private Long id;
 
-    @Column(name = "code")
     private String code;
 
-    @Column(name = "timestamp")
     private Timestamp timestamp;
 
-    @Column(name = "is_title_enabled")
     private boolean isTitleEnabled;
 
-    @Column(name = "message")
     private String message;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "html_label")
     private String htmlLabel;
 
-    @Column(name = "label")
     private String label;
 
-    @Column(name = "retryable")
     private boolean retryable;
 
-    @Column(name = "severity")
     private ErrorSeverity severity;
 
-    @Column
     private String details;
 
     // Constructors, getters, and setters
 
-    public Error() {
+    public CustomError() {
     }
 
-    public Error(Long id, String code, Timestamp timestamp, boolean isTitleEnabled, String message, String title, String htmlLabel, String label, boolean retryable, ErrorSeverity severity, String details) {
+    public CustomError(Exception e, ErrorSeverity severity){
+        this.code = "code";
+        this.timestamp = new Timestamp(currentTimeMillis());
+        this.isTitleEnabled = true;
+        this.message = e.getMessage();
+        this.title = "title";
+        this.htmlLabel = "htmlLabel";
+        this.label = "label";
+        this.retryable = false;
+        this.severity = severity;
+        this.details = "";
+    }
+
+    public CustomError(Long id, String code, Timestamp timestamp, boolean isTitleEnabled, String message, String title, String htmlLabel, String label, boolean retryable, ErrorSeverity severity, String details) {
         this.id = id;
         this.code = code;
         this.timestamp = timestamp;
@@ -65,7 +64,6 @@ public class Error {
 
     // Getters and setters
 
-    @Column(name = "id")
     public Long getId() {
         return id;
     }
@@ -74,7 +72,6 @@ public class Error {
         this.id = id;
     }
 
-    @Column(name = "code")
     public String getCode() {
         return code;
     }
@@ -83,7 +80,6 @@ public class Error {
         this.code = code;
     }
 
-    @Column(name = "timestamp")
     public Timestamp getTimestamp() {
         return timestamp;
     }
@@ -92,7 +88,6 @@ public class Error {
         this.timestamp = timestamp;
     }
 
-    @Column(name = "is_title_enabled")
     public boolean isTitleEnabled() {
         return isTitleEnabled;
     }
@@ -101,7 +96,6 @@ public class Error {
         this.isTitleEnabled = isTitleEnabled;
     }
 
-    @Column(name = "message")
     public String getMessage() {
         return message;
     }
@@ -110,7 +104,6 @@ public class Error {
         this.message = message;
     }
 
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -119,7 +112,6 @@ public class Error {
         this.title = title;
     }
 
-    @Column(name = "html_label")
     public String getHtmlLabel() {
         return htmlLabel;
     }
@@ -128,7 +120,6 @@ public class Error {
         this.htmlLabel = htmlLabel;
     }
 
-    @Column(name = "label")
     public String getLabel() {
         return label;
     }
@@ -137,7 +128,6 @@ public class Error {
         this.label = label;
     }
 
-    @Column(name = "retryable")
     public boolean isRetryable() {
         return retryable;
     }
@@ -146,13 +136,20 @@ public class Error {
         this.retryable = retryable;
     }
 
-    @Column(name = "severity")
     public ErrorSeverity getSeverity() {
         return severity;
     }
 
     public void setSeverity(ErrorSeverity severity) {
         this.severity = severity;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }
 

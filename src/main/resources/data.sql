@@ -83,12 +83,6 @@ VALUES
     (1, 'Href 1', 'Name 1', 'Referred Type 1'),
     (2, 'Href 2', 'Name 2', 'Referred Type 2');
 
-
-INSERT INTO public.error (is_title_enabled, retryable, severity, "timestamp", code, details, html_label, "label", "message", title)
-VALUES
-    (true, true, 1, '2023-06-01 10:00:00', 'Code 1', 'Details 1', 'HTML Label 1', 'Label 1', 'Message 1', 'Title 1'),
-    (false, false, 2, '2023-06-02 11:00:00', 'Code 2', 'Details 2', 'HTML Label 2', 'Label 2', 'Message 2', 'Title 2');
-
 INSERT INTO public.characteristic (address_id, audit_id, checkpoint_type_id, shipment_tracking_id, sub_address_id, "name", "value")
 VALUES
     (1, 1, 1, 1, 1, 'Characteristic Name 1', 'Characteristic Value 1'),
